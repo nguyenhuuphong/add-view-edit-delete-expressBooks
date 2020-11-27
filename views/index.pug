@@ -10,7 +10,10 @@ ul
    each user in todo
     //li= user.title + " & " + user.des + 
     li 
-       span= user.title
-       span= user.des
+       span= user.title + "   &  " + user.des
+       span &nbsp; 
+      
+     
+       
        span &nbsp;
          a(href='/books/' + user.id) xóa
