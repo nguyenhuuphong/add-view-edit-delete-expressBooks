@@ -45,10 +45,12 @@ app.post("/books/create", (req, res) => {
 // xóa todo list
 app.get("/books/:id", function(req, res) {
  var id = req.params.id;
-  db.get("user")
+  db.get("books")
     .remove({ id: id })
     .write();
-  
-  res.redirect("back");
+  res.render( "index", {
+    todo: db.get('books').value()
+});
+  //res.redirect("books");
 });
 
