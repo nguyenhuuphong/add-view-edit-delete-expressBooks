@@ -37,6 +37,7 @@ app.get("/books/create",(req, res) => {
 	res.render("create");
 });
 app.post("/books/create", (req, res) => {
+  req.body.id = shortid.generate();
     db.get('books').push(req.body).write();
     res.redirect("/books");
   
@@ -49,6 +50,6 @@ app.get("/books/:id", function(req, res) {
   //   .value();
 
   db.get("books").remove({ id: id }).write();
-  res.redirect("back");
+  res.redirect("/books");
 });
 
