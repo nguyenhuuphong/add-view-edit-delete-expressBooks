@@ -54,10 +54,16 @@ app.get("/books/:id", function(req, res) {
 });
 // cập nhật tên sách
 app.get("/books/update", function(req, res) {
-  db.get('books')
+  
+  res.render("update");
+});
+
+app.post("/books/create", (req, res) => {
+  
+   db.get('books')
   .find({ title: 'low!' })
   .assign({ title: 'hi!'})
   .write()
   
-  res.render("update");
+  res.redirect("/books");
 });
