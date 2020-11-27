@@ -51,6 +51,8 @@ app.get("/books/:id", function(req, res) {
   res.render( "index", {
     todo: db.get('books').value()
 });
-  //res.redirect("books");
 });
 
+app.get('/books/update', (req, res) => {
+  res.render('update');
+});
