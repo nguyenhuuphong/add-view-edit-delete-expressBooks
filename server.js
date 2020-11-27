@@ -43,7 +43,15 @@ app.post("/books/create", (req, res) => {
   
 });
 // xóa todo list
-app.get("/books/update", function(req, res) {
-    return res.render('update');
+app.get("/books/:id", function(req, res) {
+ var id = req.params.id;
+  db.get("books")
+    .remove({ id: id })
+    .write();
+  res.render( "index", {
+    todo: db.get('books').value()
 });
-
+});
+app.get("/books/update", function(req, res) {
+  res.render("update");
+});
