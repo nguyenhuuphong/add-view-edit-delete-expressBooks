@@ -38,7 +38,7 @@ app.get("/books/create",(req, res) => {
 });
 app.post("/books/create", (req, res) => {
     db.get('books').push(req.body).write();
-    res.redirect("/todos");
+    res.redirect("/books");
   
 });
 
