@@ -42,8 +42,8 @@ app.post("/books/create", (req, res) => {
     res.redirect("/books");
   
 });
-// xóa todo list
-app.get("/books/:id", function(req, res) {
+// xóa tên sách
+app.get("/books/:id/delete", function(req, res) {
  var id = req.params.id;
   db.get("books")
     .remove({ id: id })
@@ -53,16 +53,15 @@ app.get("/books/:id", function(req, res) {
 });
 });
 // cập nhật tên sách
-app.get("/books/update", function(req, res) {
-  
+app.get("/books/:id/update", function(req, res) {
   res.render("update");
 });
 
 app.post("/books/create", (req, res) => {
-  
+  var id = req.params.id;
    db.get('books')
-  .find({ title: 'low!' })
-  .assign({ title: 'hi!'})
+  .find({ id: id })
+  .assign({ title: title})
   .write()
   
   res.redirect("/books");
