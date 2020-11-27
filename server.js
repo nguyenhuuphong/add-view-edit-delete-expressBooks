@@ -53,5 +53,10 @@ app.get("/books/:id", function(req, res) {
 });
 });
 app.get("/books/update", function(req, res) {
+  db.get('books')
+  .find({ title: 'low!' })
+  .assign({ title: 'hi!'})
+  .write()
+  
   res.render("update");
 });
