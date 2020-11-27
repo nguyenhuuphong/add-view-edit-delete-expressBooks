@@ -63,11 +63,14 @@ app.get("/books/:id/update", function(req, res) {
 app.post("/books/:id/update", (req, res) => {
   
   var id = req.params.id;
+  var title = req.params.title;
    db.get('books')
   .find({ id: id })
-  .assign({ title: id})
+  .assign({ title: title})
   .write()
   
 
-  res.redirect("/books");
+  res.render( "index", {
+    todo: db.get('books').value()
+  });
 });
