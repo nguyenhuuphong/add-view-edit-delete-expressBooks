@@ -53,6 +53,12 @@ app.get("/books/:id", function(req, res) {
 });
 });
 
-app.get('/books/update', (req, res) => {
+app.get('/books/update/:id', (req, res) => {
+  var title = req.params.id;
   res.render('update');
+  db.get('posts')
+  .find({ title: title })
+  .assign({ title: 'hi!'})
+  .write()
+  
 });
