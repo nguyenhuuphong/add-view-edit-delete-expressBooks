@@ -55,6 +55,7 @@ app.get("/books/:id/delete", function(req, res) {
   });
 });
 
+
 // cập nhật tên sách
 app.get("/books/:id/update", function(req, res) {
   res.render("update");
@@ -63,11 +64,11 @@ app.get("/books/:id/update", function(req, res) {
 app.post("/books/:id/update", (req, res) => {
   
   var id = req.params.id;
-  var title = req.params.title;
    db.get('books')
   .find({ id: id })
-  .assign({ title: title})
+  .assign({ title: id})
   .write()
   
+
   res.redirect("/books");
 });
