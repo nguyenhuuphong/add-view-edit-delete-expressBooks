@@ -49,11 +49,10 @@ app.get("/books/:id/delete", function(req, res) {
     .remove({ id: id })
     .write(); 
   
-  res.render( "index", {
-    todo: db.get('books').value()
-  
+ // res.render( "index", {
+   // todo: db.get('books').value()
+    res.redirect("back");
   });
-});
 
 
 // cập nhật tên sách
