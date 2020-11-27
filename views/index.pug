@@ -1,9 +1,9 @@
-h1 todo list Food
-a(href="/todos/create") add name
+h1 kho sách của bạn
+a(href="/books/create") add news book
 br
-form(action="/todos", method="GET")
+form(action="/books", method="GET")
      input(type/text, name="q")
      button search
 ul 
    each user in todo
-    li= user.id + " ===> " + user.text
+    li= user.title + " & " + user.des

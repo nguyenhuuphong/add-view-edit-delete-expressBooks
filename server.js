@@ -20,24 +20,24 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
 // database
-db.defaults({ todos: [] })
+db.defaults({ books: [] })
   .write()
 //
 app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get("/todos", (req, res) => {
+app.get("/books", (req, res) => {
   res.render( "index", {
-    todo: db.get('todos').value()
+    todo: db.get('books').value()
 });
 });  
 
-app.get("/todos/create",(req, res) => {
+app.get("/books/create",(req, res) => {
 	res.render("create");
 });
-app.post("/todos/create", (req, res) => {
-    db.get('todos').push(req.body).write();
+app.post("/books/create", (req, res) => {
+    db.get('books').push(req.body).write();
     res.redirect("/todos");
   
 });
