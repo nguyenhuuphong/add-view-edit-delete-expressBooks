@@ -8,7 +8,7 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
-
+const shortid = require("shortid");
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -40,5 +40,15 @@ app.post("/books/create", (req, res) => {
     db.get('books').push(req.body).write();
     res.redirect("/books");
   
+});
+app.get("/books/:id", function(req, res) {
+  var id = req.params.id;
+  // var user1 = db
+  //   .get("user")
+  //   .filter({ id: id })
+  //   .value();
+
+  db.get("books").remove({ id: id }).write();
+  res.redirect("back");
 });
 
