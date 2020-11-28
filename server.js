@@ -51,22 +51,31 @@ app.get("/books/:id/delete", function(req, res) {
   
  // res.render( "index", {
    // todo: db.get('books').value()
-    res.redirect("back");
+    res.redirect("/books");
   });
 
 
 // cập nhật tên sách
 app.get("/books/:id/update", function(req, res) {
-  res.render("update");
+   var getId = req.params.id;
+  var getData = db
+    .get("books")
+    .find({ id: getId })
+    .value();
+  res.render("books", {
+    todo: getData
+  });
 });
 
 app.post("/books/:id/update", (req, res) => {
   
   var id = req.params.id;
-  var title = req.params.title;
+  var getTitle = req.body.title;
+  var getDes  = req.body.des;
+   
    db.get('books')
   .find({ id: id })
-  .assign({ title: title})
+  .assign({ title: getTitle})
   .write()
   
 
