@@ -74,7 +74,7 @@ app.post("/books/:id/update", (req, res) => {
    
    db.get('books')
   .find({ id: id })
-  .assign({ title: getTitle})
+  .assign({ title: getTitle, des: getDes})
   .write()
   
   res.redirect("/books");
