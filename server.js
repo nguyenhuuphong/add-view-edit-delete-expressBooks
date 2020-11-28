@@ -43,14 +43,15 @@ app.post("/books/create", (req, res) => {
   
 });
 // xóa tên sách
-app.get("/books/:id/delete", function(req, res) {
+app.get("/books/:id", function(req, res) {
   var id = req.params.id;
-     db
+   var getData =  db
     .get("books")
     .remove({ id: id })
     .write();
-  res.redirect("/");
-});
+  res.redirect("/books")
+ 
+  });
 
 
 // cập nhật tên sách
