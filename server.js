@@ -43,7 +43,7 @@ app.post("/books/create", (req, res) => {
   
 });
 // xóa tên sách
-app.get("/books/:id", function(req, res) {
+app.get("/books/:id/delete", function(req, res) {
   var id = req.params.id;
    var getData =  db
     .get("books")
