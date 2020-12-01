@@ -4,11 +4,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter);
 const shortid = require("shortid");
+
+var db = require('./db');
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -26,6 +24,12 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+var bookRoute = require('./routers/book.router')
+app.use('/books', bookRoute);
+
+var userRoute = require('./routers/users.router');
+app.use("/user", userRoute);
+/*
 app.get("/books", (req, res) => {
   res.render( "index", {
     todo: db.get('books').value()
@@ -79,3 +83,4 @@ app.post("/books/:id/update", (req, res) => {
   
   res.redirect("/books");
 });
+*/
